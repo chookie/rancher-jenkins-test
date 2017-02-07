@@ -1,0 +1,37 @@
+// Used for more informing, serious and day-to-day communications.
+$cardano-colour-1: rgb(0,72,51);
+// Used for indicating the primary action on a page.
+$cardano-colour-2: rgb(232,109,31);
+$cardano-colour-3: rgb(120,162,47);
+
+// Used for indicating variable (visual) data.
+$extra-colour-1: rgb(71,195,211);
+// Used for indicating progress and change. Graph colour 1
+$extra-colour-2: rgb(0,118,192);
+$extra-colour-3: rgb(133,12,112);
+// Used for indicating a certain achievement by the user. Graph colour 2
+$extra-colour-4: rgb(210,10,28);
+// Used for indicating paused elements. xUsed for indicating marketing elements.
+$extra-colour-5: rgb(255,196,37);
+
+$mark-colour: #ffedbe;
+$negative-colour: #dc143c;
+$positive-colour: #006e4e;
+
+$gray-lighter: #f4f5f6;
+$gray-light: #dee2e5;
+$gray: #d0d5da;
+// Used for subjacent texts.
+$gray-dark: #626f7c;
+$gray-darker: #353c43;
+
+$text-colour: $gray-darker;
+$heading-colour-1: $cardano-colour-1;
+$heading-colour-2: $cardano-colour-2;
+$link-colour: $extra-colour-2;
+$hover-link-colour: $extra-colour-1;
+$footer-colour:  $extra-colour-1;
+$welcome-text: $cardano-colour-2;
+$welcome-element-background: white;
+$welcome-element-link-colour: $cardano-colour-3;
+$welcome-element-hover-link-colour: $cardano-colour-1;

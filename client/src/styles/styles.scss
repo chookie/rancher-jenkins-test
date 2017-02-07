@@ -1,0 +1,73 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import './colours.scss';
+
+$iphone-screen: 768px;
+
+html {
+  font-family: "Gotham A", "Gotham B", 'Arial', 'Helvetica', 'Sans-Serif';
+  font-style: normal;
+}
+body {
+  font-weight: 300;
+  /* For fixed header */
+  padding: 70px;
+  color: $text-colour;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 1.5em;
+  color: $heading-colour-1;
+}
+
+h2,h3,h4,h5,h6 {
+  font-weight: 500;
+  font-size: 1.3em;
+  color: $heading-colour-2;
+}
+
+header {
+  .form-group, btn{
+    margin-right: 5px;
+  }
+  .navbar-form {
+    padding-top: 10px;
+  }
+  .navbar-nav {
+    margin: 13px;
+  }
+  .navbar-default {
+    background-color: white;
+  }
+  .navbar-brand {
+    padding: 20px 0 10px 15px;
+    height: auto;
+  }
+  img {
+    height: 2.4em;
+  }
+  .form-control {
+    padding: 6px 12px
+  }
+}
+
+.img-responsive {
+  margin: 0px auto;
+}
+
+.fill-screen {
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: $iphone-screen) {
+  p {
+    font-size: 1.3em;
+  }
+  h1 {
+    font-size: 1.6em;
+  }
+  h2{
+    font-size: 1.3em;
+  }
+}
