@@ -6,7 +6,7 @@ export default function getApis(count) {
   let apis = [];
   const resolverApi = mock.API();
   for (let i = 0; i < count; i++) {
-    let api = {}
+    let api = {};
     for (let prop in resolverApi) {
       if (prop != 'id') {
         api[prop] = resolverApi[prop]();
@@ -15,4 +15,4 @@ export default function getApis(count) {
     apis.push(api);
   }
   return apis;
-};
+}

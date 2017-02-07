@@ -1,18 +1,25 @@
 {
-  "name": "my-graphql-mock",
+  "name": "rancher-jenkins-sample-api",
   "version": "1.0.0",
-  "description": "My test of the Apollo graphql server tools for mocking",
-  "main": "index.js",
+  "description": "Rancher, Jenkins, Docker test",
+  "main": "main.js",
   "scripts": {
     "start": "npm-run-all --parallel webpack test:watch serve:bundle",
     "webpack": "webpack --watch -d",
     "serve:bundle": "nodemon dist/backend.js",
     "test": "mocha --reporter spec tools/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "prebuild": "npm run clean-dist && npm run lint && npm run test",
+    "build": "webpack -p",
+    "postbuild": "npm run copy",
+    "clean-dist": "npm run remove-dist",
+    "remove-dist": "rimraf ./dist",
+    "lint": "esw webpack.config.* src tools --color",
+    "copy": "cp package.json dist/ && cp -R config dist/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chookie/graphql-mock.git"
+    "url": "https://github.com/chookie/rancher-jenkins-test.git"
   },
   "keywords": [
     "apollo",
@@ -23,9 +30,9 @@
   "author": "Alison Johnston",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chookie/graphql-mock/issues"
+    "url": "https://github.com/chookie/rancher-jenkins-test/issues"
   },
-  "homepage": "https://github.com/chookie/graphql-mock#readme",
+  "homepage": "https://github.com/chookie/rancher-jenkins-test#readme",
   "dependencies": {
     "babel-cli": "^6.18.0",
     "body-parser": "^1.16.0",
@@ -44,10 +51,16 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.22.0",
+    "eslint": "^3.15.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-watch": "^2.1.14",
     "expect": "^1.20.2",
     "mocha": "^3.2.0",
+    "rimraf": "^2.5.4",
     "source-map-support": "^0.4.11",
     "webpack": "1.14.0"
   }

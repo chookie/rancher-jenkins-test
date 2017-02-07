@@ -7,12 +7,11 @@ import log from '../logger';
 
 let database = null;
 
-module.exports.getDb = () => {
+export default function getDb() {
   return new Promise((resolve, reject) => {
     if(!database) {
       mongoClient.connect(config.database.mongo, (err, db) => {
         if(err) {
-          console.log(err);
           reject(err);
         } else {
           database = {
@@ -27,4 +26,4 @@ module.exports.getDb = () => {
       resolve(database);
     }
   });
-};
+}

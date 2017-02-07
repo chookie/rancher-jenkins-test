@@ -1,11 +1,11 @@
 'use strict';
 
-import database from './database';
-import seeder from './seed/databaseSeeder';
+import getDb from './database';
+import seedDatabase from './seed/databaseSeeder';
 import mongodb from 'mongodb';
 
 module.exports.getApis = function (params) {
-  return new Promise((resolve, reject) => database.getDb()
+  return new Promise((resolve, reject) => getDb()
     .catch((err) => {
       reject(err);
     })
@@ -44,4 +44,4 @@ module.exports.getApis = function (params) {
   );
 };
 
-seeder.seedDatabase();
+seedDatabase();

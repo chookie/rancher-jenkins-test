@@ -3,7 +3,7 @@
 import casual from 'casual-browserify';
 import uuid from 'uuid';
 
-module.exports = {
+export default {
   API: () => ({
     id: () => uuid.v4(),
     name: () => casual.title,
@@ -13,4 +13,4 @@ module.exports = {
     documentionUrl: () => casual.url,
     healthUrl: () => casual.url
   })
-}
+};

@@ -4,9 +4,9 @@ const bunyan = require('bunyan');
 const PrettyStream = require('bunyan-prettystream');
 const config = require('config');
 
-var prettyStdOut = process.stdout;
-var prettyErrOut = process.stderr;
-var streamType = 'stream';
+let prettyStdOut = process.stdout;
+let prettyErrOut = process.stderr;
+let streamType = 'stream';
 if (config.env !== 'production') {
   prettyStdOut = new PrettyStream();
   prettyStdOut.pipe(process.stdout);
@@ -15,7 +15,7 @@ if (config.env !== 'production') {
   streamType = 'raw';
 }
 
-var log = bunyan.createLogger({
+const log = bunyan.createLogger({
   name: config.appName,
   streams: [{
     level: 'debug',

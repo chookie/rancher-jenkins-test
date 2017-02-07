@@ -3,16 +3,16 @@
 /**
  * The target: 'node' option tells webpack not to touch any built-in modules like fs or path.
  */
-var webpack = require('webpack');
-var path = require('path');
-var fs = require('fs');
+import webpack from 'webpack';
+import path from 'path';
+import fs from 'fs';
 
 /**
  * Exclude node_modules from bundle due to issues with binaries etc.
  * The default behaviour of externals assume browser and replaces require with globals.
  * So remove this for node_modules and leave as require
  */
-var nodeModules = {};
+const nodeModules = {};
 fs.readdirSync('node_modules')
   .filter(function(x) {
     return ['.bin'].indexOf(x) === -1;
@@ -43,4 +43,4 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
     ]
   }
-}
+};

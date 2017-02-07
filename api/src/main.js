@@ -9,9 +9,7 @@ import schemaString from './data/graphql/schema';
 import mockResolver from './data/graphql/mockResolver';
 import resolverMap from './data/graphql/dbResolver';
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
-import { graphql } from 'graphql';
 import GraphQLHTTP from 'express-graphql';
-import { MongoClient } from 'mongodb';
 
 // Create variable app by executing express function.
 const app = express();
@@ -47,43 +45,18 @@ app.use('/graphql', GraphQLHTTP({
     graphiql: true
 }));
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 const protocol = 'http';
 server.listen(config.port, config.host);
 server.on('error', onError);
 server.on('listening', onListening.bind(null, server, protocol));
-
-// // Connect to database before starting server
-// let db;
-// MongoClient.connect(config.mongo, (err, database) => {
-//   if (err) {
-//     throw err;
-//   }
-//   db = database;
-//   // const realSchema = makeExecutableSchema({
-//   //   typeDefs: schemaString,
-//   //   resolvers: resolverMap(db)
-//   // });
-
-//   // app.use('/graphql', GraphQLHTTP({
-//   //     schema: realSchema,
-//   //     graphiql: true
-//   // }));
-
-//   var server = http.createServer(app);
-//   const protocol = 'http';
-//   server.listen(config.port, config.host);
-//   server.on('error', onError);
-//   server.on('listening', onListening.bind(null, server, protocol));
-
-// });
 
 
 /**
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -106,7 +79,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
+  const bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
@@ -132,6 +105,7 @@ function onListening(server, protocol) {
   const addr = server.address();
   const url = `${protocol}://${addr.address}:${addr.port}`;
   log.info(`listening at ${url}`);
+  /* eslint-disable no-console */
   console.log(`${config.appDisplay} listening at ${url}`);
   console.log(`Test using:\n  curl -kisS ${url}/graphql`);
 }

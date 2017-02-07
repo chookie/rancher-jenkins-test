@@ -1,0 +1,1 @@
+{"appName":"rancher-jenkins-sample-api","appDisplay":"Rancher, Jenkins and Docker Sample API","env":"development","port":8081,"host":"localhost","loggingLevel":"info","database":{"seedDb":false,"seedCount":0}}

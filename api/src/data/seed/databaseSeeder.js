@@ -8,7 +8,7 @@ import getApis from './seedData';
 import config from 'config';
 import log from '../../logger';
 
-module.exports.seedDatabase = () => {
+export default function seedDatabase() {
   if (!config.database.seedDb) {
     log.info("Database seeding disabled");
     return;
@@ -52,5 +52,5 @@ const seedApis = (db) => {
       }
     }
   });
-}
+};
 

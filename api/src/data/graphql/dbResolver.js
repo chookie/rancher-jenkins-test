@@ -9,7 +9,8 @@ let Resolver = () => {
 
   let resolver = {
     Query: {
-      apis(root, args, context, info) {
+      //apis(root, args, context, info) {
+      apis(root, args) {
         // let findParams = {
         //   name: args.name,
         //   type: args.type,
@@ -20,13 +21,13 @@ let Resolver = () => {
     }
     // Map mongo _id to our id field
     ,API: {
-      id(root, args, context, info) {
+      id(root) {
         return root._id;
       }
     }
-  }
+  };
 
   return resolver;
-}
+};
 
 export default Resolver;
