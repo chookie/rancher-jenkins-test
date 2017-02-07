@@ -16,8 +16,6 @@ import '../src/components/common/fillScreen';
 
 const preloadedState = window.__PRELOADED_STATE__;
 
-console.log('preloadedState',preloadedState);
-
 const store = createStore(
   reducers,
   preloadedState,
