@@ -1,13 +1,22 @@
 import actionType from './tableActionTypes.js';
 
-const initialState = {};
+const initialState = {data: [] };
 
-function tableReducer (state = initialState, action) {
+function isEmpty(object) {
+  return Object.keys(object).length === 0;
+}
+
+function tableReducer(state = initialState, action) {
+  if (isEmpty(state)) {
+    // Now we are using isomorphic empty object is coming through rather than undefined
+    // so not geting default.
+    state = initialState;
+  }
   switch (action.type) {
     case actionType.TABLE_SUCCESS:
-      return Object.assign({data: action.table}, state, {showErrorMessage: false});
+      return { data: action.table, showErrorMessage: false };
     case actionType.TABLE_FAILURE:
-      return Object.assign({data: action.table}, state, {showErrorMessage: true});
+      return Object.assign({ data: action.table }, state, { showErrorMessage: true });
     default:
       return state;
   }

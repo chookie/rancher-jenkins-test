@@ -15,7 +15,7 @@ export function loadData() {
     axios.get("http://localhost:3004/portfolios")
     .then(handleErrors)
     .then(response => {
-      dispatch({ type: actionType.TABLE_SUCCESS , table:response.data });
+      dispatch({ type: actionType.TABLE_SUCCESS , table: response.data });
     })
     .catch(error => {
       dispatch({ type: actionType.TABLE_FAILURE, error });

@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import TableListRow from './TableListRow';
 
 const TableList = ({portfolios}) => {
-  let ports = portfolios ? portfolios.slice(0,1) : portfolios;
   return (
     <table className="table">
       <thead>
@@ -20,7 +19,7 @@ const TableList = ({portfolios}) => {
       </tr>
       </thead>
       <tbody>
-      {ports.map(portfolio =>
+      {portfolios.map(portfolio =>
         <TableListRow key={portfolio.id} portfolio={portfolio}/>
       )}
       </tbody>

@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Alert } from 'react-bootstrap';
 
-import { loadData } from './tableActions';
+import * as tableActions from './tableActions';
 import TablePage from './components/TablePage.js';
 // if(process.env.WEBPACK) require('./LoginContainer.scss');
 
 class TableContainer extends Component {
-  static propTypes = {
-    loadData: React.PropTypes.func.isRequired,
-    clearAlert: React.PropTypes.func,
-    showErrorMessage: React.PropTypes.bool,
-    data: React.PropTypes.array
-  }
 
   constructor(props) {
     super(props);
@@ -23,7 +18,7 @@ class TableContainer extends Component {
   }
 
   handleAlertDismiss() {
-    this.props.clearAlert();
+    // this.props.actions.clearAlert();
   }
 
   showAlert(message) {
@@ -36,12 +31,12 @@ class TableContainer extends Component {
 
   handleClick(event) {
     event.preventDefault();
-    this.props.loadData();
+    this.props.actions.loadData();
   }
 
   render() {
     let errorAlert;
-    if (this.props.showErrorMessage) {
+    if (this.props.actions.showErrorMessage) {
       errorAlert = this.showAlert('Oh snap! You have a load error!');
     }
 
@@ -57,12 +52,22 @@ class TableContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
+TableContainer.propTypes = {
+  data: PropTypes.array,
+  actions: PropTypes.object.isRequired
+};
+
+function mapStateToProps(storeState) {
   return {
-    data: state.table.data ? state.table.data:[],
-    showErrorMessage: state.table.showErrorMessage
+    data: storeState.table.data,
+    showErrorMessage: storeState.table.showErrorMessage
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(tableActions, dispatch)
+  };
+}
 
-export default connect(mapStateToProps, { loadData })(TableContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TableContainer);
