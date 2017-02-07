@@ -14,9 +14,9 @@ function tableReducer(state = initialState, action) {
   }
   switch (action.type) {
     case actionType.TABLE_SUCCESS:
-      return { data: action.table, showErrorMessage: false };
+      return { data: action.table.data.apis, showErrorMessage: false };
     case actionType.TABLE_FAILURE:
-      return Object.assign({ data: action.table }, state, { showErrorMessage: true });
+      return Object.assign({ data: action.table.data.apis }, state, { showErrorMessage: true });
     default:
       return state;
   }

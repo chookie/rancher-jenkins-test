@@ -1,25 +1,22 @@
 import React, {PropTypes} from 'react';
 // import {Link} from 'react-router';
 
-const TableListRow = ({portfolio}) => {
+const TableListRow = ({api}) => {
   return (
     <tr>
-      <td>{portfolio.client}</td>
-      <td>{portfolio.city}</td>
-      <td>{portfolio.country}</td>
-      <td>{portfolio.stock}</td>
-      <td>{portfolio.quantity100/100}</td>
-      <td>{portfolio.value100/100}</td>
-      <td>{portfolio.buyDate}</td>
-      <td>{portfolio.expireDate}</td>
-      <td>{portfolio.notes}</td>
-      <td>{portfolio.contact}</td>
+      <td>{api.id}</td>
+      <td>{api.name}</td>
+      <td>{api.description}</td>
+      <td>{api.type}</td>
+      <td>{api.imageUrl}</td>
+      <td>{api.documentionUrl}</td>
+      <td>{api.healthUrl}</td>
     </tr>
   );
 };
 
 TableListRow.propTypes = {
-  portfolio: PropTypes.object.isRequired
+  api: PropTypes.object.isRequired
 };
 
 export default TableListRow;

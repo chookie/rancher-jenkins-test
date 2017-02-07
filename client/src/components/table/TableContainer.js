@@ -44,7 +44,7 @@ class TableContainer extends Component {
       <div>
         {errorAlert}
         <TablePage
-          portfolios={this.props.data}
+          apis={this.props.data}
           handleClick={this.handleClick} 
         />
       </div>

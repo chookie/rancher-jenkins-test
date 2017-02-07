@@ -1,26 +1,23 @@
 import React, {PropTypes} from 'react';
 import TableListRow from './TableListRow';
 
-const TableList = ({portfolios}) => {
+const TableList = ({apis}) => {
   return (
     <table className="table">
       <thead>
       <tr>
-        <th>Client</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Stock</th>
-        <th>Quantity</th>
-        <th>Value</th>
-        <th>Buy Data</th>
-        <th>Expire Date</th>
-        <th>Notes</th>
-        <th>Contact</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Image</th>
+        <th>Documentation</th>
+        <th>Health</th>
       </tr>
       </thead>
       <tbody>
-      {portfolios.map(portfolio =>
-        <TableListRow key={portfolio.id} portfolio={portfolio}/>
+      {apis.map(api =>
+        <TableListRow key={api.id} api={api}/>
       )}
       </tbody>
     </table>
@@ -28,7 +25,7 @@ const TableList = ({portfolios}) => {
 };
 
 TableList.propTypes = {
-  portfolios: PropTypes.array.isRequired
+  apis: PropTypes.array.isRequired
 };
 
 export default TableList;
