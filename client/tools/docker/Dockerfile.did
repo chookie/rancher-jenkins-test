@@ -1,0 +1,13 @@
+# https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
+# docker build --file tools/docker/Dockerfile.did --tag build-nginx-light .
+FROM docker
+
+COPY build-nginx-light /usr/bin/build-nginx-light
+COPY strip-docker-image /usr/bin/strip-docker-image
+COPY strip-docker-image-export /usr/bin/strip-docker-image-export
+
+RUN chmod 777 /usr/bin/build-nginx-light
+RUN chmod 777 /usr/bin/strip-docker-image*
+#RUN /usr/bin/build-nginx-light
+
+#CMD /usr/bin/build-nginx-light

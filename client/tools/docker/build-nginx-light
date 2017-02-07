@@ -1,0 +1,23 @@
+#!/bin/bash
+# https://github.com/mvanholsteijn/strip-docker-image
+#
+# tools/docker/build-nginx-light
+#
+
+SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+$SCRIPT_DIR/strip-docker-image -i nginx -t cardano/stripped-nginx  \
+                           -x 80 \
+                           -x 443 \
+                           -p nginx  \
+                           -f /etc/passwd \
+                           -f /etc/group \
+                           -f '/lib/*/libnss*' \
+                           -f /bin/ls \
+                           -f /bin/cat \
+                           -f /bin/sh \
+                           -f /bin/mkdir \
+                           -f /bin/ps \
+                           -f /var/run \
+                           -f /var/log/nginx \
+                           -f /var/cache/nginx
