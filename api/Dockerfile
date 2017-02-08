@@ -1,6 +1,4 @@
 # build: docker build -f Dockerfile -t cardano/rancher-jenkins-sample-api:latest .
-# compose: docker-compose -f docker-compose.yml up
-# docker-compose -f docker-compose.yml up --build
 #
 # docker run -p 8081:8081 -d cardano/rancher-jenkins-sample-api:latest
 # docker run -p 8081:8081 cardano/rancher-jenkins-sample-api:latest
@@ -22,7 +20,11 @@ RUN npm install
 # Bundle app source
 ADD dist /usr/src/app
 
-# app binds to port 8080 so you'll use the instruction to have it mapped by the docker daemon
-EXPOSE 8081
+# App use PORT environment so set the app and expose it here.
+# If PORT is not set then set it.
+ENV PORT 8080
+EXPOSE $PORT
+
+HEALTHCHECK CMD curl --fail http://localhost:$PORT/ || exit 1
 
 CMD [ "npm", "start" ]

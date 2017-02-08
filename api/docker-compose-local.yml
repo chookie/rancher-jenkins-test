@@ -1,0 +1,29 @@
+# docker-compose -f docker-compose-local.yml up
+version: '2'
+services:
+
+  api:
+    image: node:6.9.4
+    volumes:
+      - ./:/usr/src/app
+    working_dir: /usr/src/app
+    command: sh -c 'npm install; npm run dev --debug=5858'
+    ports:
+      - "8081:8080"
+      - 5858:5858
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 8080
+      MONGO_URI: mongodb://mongo:27017/rancher_jenkins
+      MONGO_SEED: "true"
+      MONGO_SEED_COUNT: 20
+      LOGGING_LEVEL: debug
+      CONFIG_ENV: local
+
+  mongo:
+    image: mongo:3
+    command: mongod --smallfiles
+

@@ -1,4 +1,5 @@
 #!/bin/bash
+# Creates a Nod.js nuild environment
 
 set -e
 

@@ -1,3 +1,6 @@
+# Creates a Nod.js nuild environment
+# See Readme
+
 FROM    node:6.9.4
 
 ADD build.sh /tmp/build.sh

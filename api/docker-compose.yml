@@ -1,13 +1,25 @@
-
+# docker-compose --build up
 version: '2'
-
 services:
+
   api:
-    image: cardano/rancher-jenkins-sample-api:latest
+    image: cardano/rancher-jenkins-sample-api
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - "80:8080"
+    depends_on:
+      - mongo
     environment:
       NODE_ENV: production
-    ports:
-      - 8081:8081
+      PORT: 8080
+      MONGO_URI: mongodb://mongo:27017/rancher_jenkins
+      MONGO_SEED: "true"
+      MONGO_SEED_COUNT: 20
+      LOGGING_LEVEL: info
+      CONFIG_ENV: release
+
+  mongo:
+    image: mongo:3
+    command: mongod --smallfiles

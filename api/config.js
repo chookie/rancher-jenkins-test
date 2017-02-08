@@ -12,9 +12,9 @@ export default {
   host: 'localhost',
   loggingLevel: 'info',
   database: {
-    mongo: process.env.MONGO_HOST,
+    mongo: process.env.MONGO_URI,
     seedDb: process.env.MONGO_SEED || false,
-    seedCount: process.env.MONGO_SEED || 0
+    seedCount: process.env.MONGO_SEED_COUNT || 0
   },
   configEnv: process.env.CONFIG_ENV || "default"
 }
