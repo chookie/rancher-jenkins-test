@@ -92,10 +92,9 @@ app.use('/graphql', GraphQLHTTP({
 }));
 
 const server = http.createServer(app);
-const protocol = 'http';
 server.listen(config.port);
 server.on('error', onError);
-server.on('listening', onListening.bind(null, server, protocol));
+server.on('listening', onListening);
 
 
 /**
@@ -117,6 +116,12 @@ function normalizePort(val) {
   return false;
 }
 
+function getPortAndType() {
+  return typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+}
+
 /**
  * Event listener for HTTP server "error" event.
  */
@@ -125,9 +130,7 @@ function onError(error) {
     throw error;
   }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = getPortAndType();
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -147,12 +150,8 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-function onListening(server, protocol) {
+function onListening() {
   log.info(`config is ${config.configEnv}`);
-  const addr = server.address();
-  const url = `${protocol}://${addr.address}:${addr.port}`;
-  log.info(`listening at ${url}`);
-  /* eslint-disable no-console */
-  console.log(`${config.appDisplay} listening at ${url}`);
-  console.log(`Test using:\n  curl -kisS ${url}/graphql`);
+  const bind = getPortAndType();
+  log.info(`listening on ${bind}`);
 }
