@@ -22,7 +22,7 @@ const config = {
   version: "1.0.0",
   configEnv: 'testserver',
   appDisplay: 'testserver'
-}
+};
 
 // Create variable app by executing express function.
 const app = express();
