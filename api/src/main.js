@@ -5,7 +5,7 @@
 import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
-// import config from '../config';
+import config from '../config';
 import log from './logger';
 import schemaString from './data/graphql/schema';
 import mockResolver from './data/graphql/mockResolver';
@@ -14,15 +14,6 @@ import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import GraphQLHTTP from 'express-graphql';
 import morgan from 'morgan';
 import compress from 'compression';
-
-const config = {
-  port: 8080,
-  host: "localhost",
-  env: process.env.NODE_ENV,
-  version: "1.0.0",
-  configEnv: 'testserver',
-  appDisplay: 'testserver'
-};
 
 // Create variable app by executing express function.
 const app = express();
