@@ -2,7 +2,7 @@
 
 import mongo from 'mongodb';
 const mongoClient = mongo.MongoClient;
-import config from 'config';
+import config from '../../config';
 import log from '../logger';
 
 let database = null;

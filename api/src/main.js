@@ -1,10 +1,12 @@
 'use strict';
 
+// Enable dotenv
+
 import express from 'express';
-const http = require('http');
-const bodyParser = require('body-parser');
-import config from 'config';
-const log = require('./logger');
+import http from 'http';
+import bodyParser from 'body-parser';
+import config from '../config';
+import log from './logger';
 import schemaString from './data/graphql/schema';
 import mockResolver from './data/graphql/mockResolver';
 import resolverMap from './data/graphql/dbResolver';
@@ -102,6 +104,7 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 function onListening(server, protocol) {
+  log.info(`config is ${config.configEnv}`);
   const addr = server.address();
   const url = `${protocol}://${addr.address}:${addr.port}`;
   log.info(`listening at ${url}`);

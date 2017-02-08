@@ -1,15 +1,16 @@
 #!/bin/bash
 
+set -e
+
 # Set directory to where we expect code to be
 cd ${SOURCE_PATH}
+pwd
+ls
 
 echo "Downloading dependencies"
 npm install
 
-echo "Runing tests"
-npm test
-
 echo "Bulding source"
-npm build
+npm run build
 
-echo "Build successful"
+echo "Build complete"

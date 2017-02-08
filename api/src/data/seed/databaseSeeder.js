@@ -3,9 +3,9 @@
 // Allowing console calls below since this is a build file.
 /* eslint-disable no-console */
 
-const database = require("../database");
+import getDb from "../database";
 import getApis from './seedData';
-import config from 'config';
+import config from '../../../config';
 import log from '../../logger';
 
 export default function seedDatabase() {
@@ -13,7 +13,7 @@ export default function seedDatabase() {
     log.info("Database seeding disabled");
     return;
   }
-  database.getDb()
+  getDb()
     .then((db) => {
       seedApis(db);
     })

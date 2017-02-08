@@ -1,8 +1,8 @@
 'use strict';
 
-const bunyan = require('bunyan');
-const PrettyStream = require('bunyan-prettystream');
-const config = require('config');
+import bunyan from 'bunyan';
+import PrettyStream from 'bunyan-prettystream';
+import config from '../config';
 
 let prettyStdOut = process.stdout;
 let prettyErrOut = process.stderr;
@@ -15,7 +15,7 @@ if (config.env !== 'production') {
   streamType = 'raw';
 }
 
-const log = bunyan.createLogger({
+export default bunyan.createLogger({
   name: config.appName,
   streams: [{
     level: 'debug',
@@ -27,5 +27,3 @@ const log = bunyan.createLogger({
     stream: prettyErrOut
   }]
 });
-
-module.exports = log;

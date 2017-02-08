@@ -10,4 +10,4 @@
 * If not already created then create Node build docker</br> 
 `docker build -t cardano/node-builder .`
 * Run a builds in the build container</br> 
-`docker run --rm -it -v $PWD:/node/src/api/ -e NODE_ENV=production -e SOURCE_PATH=/node/src/api/ cardano/node-builder:latest`
+`docker run --rm -it -v $PWD/api/:/node/src/api/ -e NODE_ENV=production -e SOURCE_PATH=/node/src/api/ cardano/node-builder:latest`

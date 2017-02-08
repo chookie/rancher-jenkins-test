@@ -4,18 +4,19 @@
   "description": "Rancher, Jenkins, Docker test",
   "main": "main.js",
   "scripts": {
-    "start": "npm-run-all --parallel webpack test:watch serve:bundle",
-    "webpack": "webpack --watch -d",
+    "dev": "npm-run-all --parallel webpack:watch test:watch serve:bundle",
+    "webpack:watch": "webpack --watch -development",
     "serve:bundle": "nodemon dist/backend.js",
     "test": "mocha --reporter spec tools/testSetup.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
     "prebuild": "npm run clean-dist && npm run lint && npm run test",
-    "build": "webpack -p",
-    "postbuild": "npm run copy",
+    "build": "webpack -production",
+    "postbuild": "npm-run-all --parallel copy:files",
     "clean-dist": "npm run remove-dist",
     "remove-dist": "rimraf ./dist",
     "lint": "esw webpack.config.* src tools --color",
-    "copy": "cp package.json dist/ && cp -R config dist/"
+    "copy:files": "cp package.json dist/ && cp -R config.js dist/",
+    "start": "node backend.js"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,7 @@
     "bunyan": "^1.8.5",
     "bunyan-prettystream": "^0.1.3",
     "casual-browserify": "^1.5.8",
-    "config": "^1.25.1",
+    "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "graphql": "^0.8.2",
