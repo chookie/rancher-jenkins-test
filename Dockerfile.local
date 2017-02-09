@@ -1,0 +1,10 @@
+# Image for node.js application development on a local computer.
+#
+# docker build -f Dockerfile.local -t cardano/node-local:latest .
+
+FROM node:6.9.4
+
+MAINTAINER Cardano
+LABEL Name=node-local Version=1.0.0
+
+ENV NODE_ENV=development

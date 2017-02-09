@@ -1,12 +1,16 @@
-# docker-compose --build up
+# Compose containers for this application
+#
+# docker-compose up --build
+
 version: '2'
 services:
 
   api:
-    image: cardano/rancher-jenkins-sample-api
+    image: cardano/node-release:latest
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.release
+    container_name: rancher_api_release
     ports:
       - "80:8080"
     depends_on:

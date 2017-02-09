@@ -1,9 +1,16 @@
-# docker-compose -f docker-compose-local.yml up
+# Compose containers for this application
+#
+# docker-compose -f docker-compose-local.yml up --build
+
 version: '2'
 services:
 
   api:
-    image: node:6.9.4
+    image: cardano/node-local:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    container_name: rancher_api_local
     volumes:
       - ./:/usr/src/app
     working_dir: /usr/src/app
