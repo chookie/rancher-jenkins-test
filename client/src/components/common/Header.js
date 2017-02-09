@@ -16,6 +16,9 @@ const Header = () => {
               <span className="icon-bar" />
               <span className="icon-bar" />
             </button>
+            <Link to="/" className="navbar-brand">
+              <img src="./images/cardano_logo.png" />
+            </Link>
 
           </div>
 
